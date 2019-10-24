@@ -1,0 +1,4 @@
+<typeAliases>
+    <typeAlias type="com.springboot.mybatis.entity.TSysUser" alias="TSysUser"></typeAlias>
+    <typeAlias type="com.springboot.mybatis.entity.TTestUser" alias="TTestUser"></typeAlias>
+</typeAliases>
