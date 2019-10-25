@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50709
 File Encoding         : 65001
 
-Date: 2019-10-24 16:50:09
+Date: 2019-10-25 11:25:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -169,9 +169,9 @@ CREATE TABLE `t_test_user` (
   `user_id` bigint(20) NOT NULL COMMENT 'user_id',
   `user_other` varchar(200) DEFAULT NULL COMMENT 'other',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_test_user
 -- ----------------------------
-INSERT INTO `t_test_user` VALUES ('1', '3', 'test');
+INSERT INTO `t_test_user` VALUES ('2', '3', '333');

@@ -20,17 +20,17 @@ public class TSysUser implements Serializable {
     
     private String salt;
 
-    private TTestUser tTestUser;
+    private TTestUser testUser;
 
     private List<TSysUser> roles;
     private List<TSysUserRole> userRoles;
 
-    public TTestUser gettTestUser() {
-        return tTestUser;
+    public TTestUser getTestUser() {
+        return testUser;
     }
 
-    public void settTestUser(TTestUser tTestUser) {
-        this.tTestUser = tTestUser;
+    public void setTestUser(TTestUser testUser) {
+        this.testUser = testUser;
     }
 
     public List<TSysUserRole> getUserRoles() {

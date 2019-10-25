@@ -106,19 +106,25 @@
     <select id="queryById" resultMap="userList">
         select
           id, username, password, salt
-        from test.t_sys_user
+        from t_sys_user
         where id = #{id}
     </select>
 
     <resultMap id="userList" type="com.springboot.mybatis.entity.TSysUser">
-        <association property="tTestUser" column="id"
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="password" column="password"></result>
+        <result property="salt" column="salt"></result>
+        <association property="testUser" column="id"
                      javaType="com.springboot.mybatis.entity.TTestUser"
         select="getTestUser">
-
+            <id property="id" column="id"></id>
+            <result property="userId" column="user_id"></result>
+            <result property="userOther" column="user_other"></result>
         </association>
     </resultMap>
     <select id="getTestUser" resultType="com.springboot.mybatis.entity.TTestUser">
-        select * from t_test_user as tu where tu.user_id = #{id}
+        select id,user_id,user_other from t_test_user  where user_id = #{id}
     </select>
 
 </mapper>
