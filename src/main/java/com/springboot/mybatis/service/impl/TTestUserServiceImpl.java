@@ -12,7 +12,7 @@ import java.util.List;
  * (TTestUser)表服务实现类
  *
  * @author makejava
- * @since 2019-10-23 20:32:43
+ * @since 2019-10-26 10:49:39
  */
 @Service("tTestUserService")
 public class TTestUserServiceImpl implements TTestUserService {
@@ -22,12 +22,12 @@ public class TTestUserServiceImpl implements TTestUserService {
     /**
      * 通过ID查询单条数据
      *
-     * @param id 主键
+     * @param userTestId 主键
      * @return 实例对象
      */
     @Override
-    public TTestUser queryById(Long id) {
-        return this.tTestUserDao.queryById(id);
+    public TTestUser queryById(Long userTestId) {
+        return this.tTestUserDao.queryById(userTestId);
     }
 
     /**
@@ -63,17 +63,17 @@ public class TTestUserServiceImpl implements TTestUserService {
     @Override
     public TTestUser update(TTestUser tTestUser) {
         this.tTestUserDao.update(tTestUser);
-        return this.queryById(tTestUser.getId());
+        return this.queryById(tTestUser.getUserTestId());
     }
 
     /**
      * 通过主键删除数据
      *
-     * @param id 主键
+     * @param userTestId 主键
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Long id) {
-        return this.tTestUserDao.deleteById(id) > 0;
+    public boolean deleteById(Long userTestId) {
+        return this.tTestUserDao.deleteById(userTestId) > 0;
     }
 }

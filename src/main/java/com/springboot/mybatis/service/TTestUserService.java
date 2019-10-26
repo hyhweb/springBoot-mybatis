@@ -7,17 +7,17 @@ import java.util.List;
  * (TTestUser)表服务接口
  *
  * @author makejava
- * @since 2019-10-23 20:32:43
+ * @since 2019-10-26 10:49:39
  */
 public interface TTestUserService {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param id 主键
+     * @param userTestId 主键
      * @return 实例对象
      */
-    TTestUser queryById(Long id);
+    TTestUser queryById(Long userTestId);
 
     /**
      * 查询多条数据
@@ -47,9 +47,9 @@ public interface TTestUserService {
     /**
      * 通过主键删除数据
      *
-     * @param id 主键
+     * @param userTestId 主键
      * @return 是否成功
      */
-    boolean deleteById(Long id);
+    boolean deleteById(Long userTestId);
 
 }

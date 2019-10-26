@@ -3,7 +3,7 @@
 <mapper namespace="com.springboot.mybatis.dao.TTestUserDao">
 
     <resultMap type="com.springboot.mybatis.entity.TTestUser" id="TTestUserMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userTestId" column="user_test_id" jdbcType="INTEGER"/>
                <result property="userId" column="user_id" jdbcType="INTEGER"/>
                <result property="userOther" column="user_other" jdbcType="VARCHAR"/>
            </resultMap>
@@ -11,15 +11,15 @@
     <!--查询单个-->
     <select id="queryById" resultMap="TTestUserMap">
         select
-          id, user_id, user_other
+          user_test_id, user_id, user_other
         from test.t_test_user
-        where id = #{id}
+        where user_test_id = #{userTestId}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="TTestUserMap">
         select
-          id, user_id, user_other
+          user_test_id, user_id, user_other
         from test.t_test_user
         limit #{offset}, #{limit}
     </select>
@@ -27,11 +27,11 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="TTestUserMap">
         select
-          id, user_id, user_other
+          user_test_id, user_id, user_other
         from test.t_test_user
         <where>
-            <if test="id != null">
-                and id = #{id}
+            <if test="userTestId != null">
+                and user_test_id = #{userTestId}
             </if>
             <if test="userId != null">
                 and user_id = #{userId}
@@ -43,7 +43,7 @@
     </select>
 
     <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    <insert id="insert" keyProperty="userTestId" useGeneratedKeys="true">
         insert into test.t_test_user(user_id, user_other)
         values (#{userId}, #{userOther})
     </insert>
@@ -59,12 +59,12 @@
                 user_other = #{userOther},
             </if>
         </set>
-        where id = #{id}
+        where user_test_id = #{userTestId}
     </update>
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from test.t_test_user where id = #{id}
+        delete from test.t_test_user where user_test_id = #{userTestId}
     </delete>
 
 </mapper>

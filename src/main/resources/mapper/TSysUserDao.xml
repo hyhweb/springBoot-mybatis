@@ -103,13 +103,9 @@
         </collection>
     </resultMap>-->
     <!-- 嵌套结果方法 end -->
-    <select id="queryById" resultMap="userList">
-        select
-          id, username, password, salt
-        from t_sys_user
-        where id = #{id}
-    </select>
 
+
+<!--    一对一的嵌套查询 start-->
     <resultMap id="userList" type="com.springboot.mybatis.entity.TSysUser">
         <id property="id" column="id"></id>
         <result property="username" column="username"></result>
@@ -117,14 +113,70 @@
         <result property="salt" column="salt"></result>
         <association property="testUser" column="id"
                      javaType="com.springboot.mybatis.entity.TTestUser"
-        select="getTestUser">
-            <id property="id" column="id"></id>
+                     select="getTestUser">
+        </association>
+    </resultMap>
+    <select id="queryById" resultMap="userList">
+        select
+          *
+        from t_sys_user
+        where id = #{id}
+    </select>
+
+    <resultMap type="com.springboot.mybatis.entity.TTestUser" id="TTestUserMap">
+        <result property="userTestId" column="user_test_id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="userOther" column="user_other" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getTestUser" resultMap="com.springboot.mybatis.dao.TTestUserDao.TTestUserMap">
+        select * from t_test_user  where t_test_user.user_id = #{id}
+    </select>
+<!--    所有的关联都可以引用其他mapper的Id的方法和resultMap-->
+    <!--一对一的关联，被关联的select标签需要用resultMap,不能使用resultType.否则数据为null-->
+    <!--    一对一的嵌套查询 end-->
+
+
+    <!--    一对一的嵌套查询 方法2 start-->
+    <!--<resultMap id="userList" type="com.springboot.mybatis.entity.TSysUser">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="password" column="password"></result>
+        <result property="salt" column="salt"></result>
+        <association property="testUser" column="{userTestId=id}"
+                     javaType="com.springboot.mybatis.entity.TTestUser"
+                     select="com.springboot.mybatis.dao.TTestUserDao.queryById">
+        </association>
+    </resultMap>
+    <select id="queryById" resultMap="userList">
+        select
+          *
+        from t_sys_user
+        where id = #{id}
+    </select>-->
+<!--    association的select 可以直接调用其他接口来实现-->
+    <!--    一对一的嵌套查询 方法2 end-->
+
+
+
+
+   <!-- <resultMap id="userList" type="com.springboot.mybatis.entity.TSysUser">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="password" column="password"></result>
+        <result property="salt" column="salt"></result>
+        <association property="testUser" column="id"
+                     javaType="com.springboot.mybatis.entity.TTestUser"
+                     >
+            <id property="userTestId" column="user_test_id"></id>
             <result property="userId" column="user_id"></result>
             <result property="userOther" column="user_other"></result>
         </association>
     </resultMap>
-    <select id="getTestUser" resultType="com.springboot.mybatis.entity.TTestUser">
-        select id,user_id,user_other from t_test_user  where user_id = #{id}
-    </select>
-
+    <select id="queryById" resultMap="userList">
+        select
+          *
+        from t_sys_user u left join t_test_user tu on u.id =tu.user_id
+        where u.id = #{id}
+    </select>-->
 </mapper>
